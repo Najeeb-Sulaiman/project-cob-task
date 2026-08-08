@@ -114,3 +114,74 @@ This should include appropriate integration with:
 - Amazon Athena
 
 ---
+
+# Designing the Abstractions
+
+One of the most important requirements of COB is that the modules must provide **real abstractions**.
+
+Do not simply create modules that hide a single AWS resource.
+
+For example, a module whose only purpose is to expose:
+
+```text
+aws_s3_bucket
+```
+
+behind another interface does not provide much value.
+
+Instead, think about what an engineering team actually needs.
+
+A standardised object-storage capability might include several related resources and configurations required to make storage secure, observable and operationally consistent.
+
+The same principle should be applied throughout the platform.
+
+Your module boundaries are part of the design challenge.
+
+---
+
+# Platform Consumers
+
+COB will eventually be used by several teams.
+
+For example:
+
+```text
+Application Engineering
+        │
+        ├── Web applications
+        │
+        └── Microservices
+
+Data Engineering
+        │
+        ├── Data ingestion
+        ├── Data processing
+        └── Analytics
+
+Analytics Engineering
+        │
+        └── Data consumption
+```
+
+Each team should be able to consume COB without needing to understand every implementation detail behind the platform.
+
+The platform should expose a clean interface through Terraform variables and outputs.
+
+---
+
+# Environments
+
+COB must support multiple environments.
+
+At minimum:
+
+```text
+dev
+prod
+```
+
+The same platform capabilities should be reusable across environments while allowing appropriate configuration differences.
+
+Avoid duplicating infrastructure code simply because the environment changes.
+
+---
