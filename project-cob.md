@@ -54,3 +54,63 @@ The platform should:
 The team has decided to build an internal Terraform-based platform called **COB**.
 
 ---
+
+# Your Assignment
+
+You are a Platform Engineer on the COB team.
+
+Your responsibility is to design and implement the first version of COB as a **reusable internal infrastructure provisioning platform**.
+
+COB should provide reusable Terraform modules that other engineering teams can consume to provision standardised AWS infrastructure.
+
+The platform should not simply be a collection of Terraform files for individual AWS resources.
+
+You are expected to identify meaningful infrastructure capabilities and design reusable abstractions around them.
+
+---
+
+# Platform Capabilities
+
+The first version of COB must provide reusable capabilities for:
+
+### Networking
+
+A standard AWS network foundation that can be used by engineering workloads.
+
+It should support the required VPC components, subnets, routing and security boundaries.
+
+### Identity and Access
+
+Reusable patterns for creating IAM resources while encouraging least-privilege access.
+
+### Object Storage
+
+A standardised S3 storage capability with appropriate security and operational defaults.
+
+Consider requirements such as encryption, versioning, lifecycle management, naming and tagging.
+
+### Compute
+
+Reusable infrastructure for workloads that need:
+
+- EC2
+- ECS
+
+The platform should make sensible networking and IAM configurations available to workloads without requiring every team to implement them independently.
+
+### Relational Database
+
+A reusable RDS capability for teams that require a managed relational database.
+
+The module should account for networking, security and operational considerations.
+
+### Data Platform Services
+
+Reusable capabilities for teams that need to expose data stored in S3 to analytics users.
+
+This should include appropriate integration with:
+
+- AWS Glue Data Catalog
+- Amazon Athena
+
+---
