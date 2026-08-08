@@ -185,3 +185,53 @@ The same platform capabilities should be reusable across environments while allo
 Avoid duplicating infrastructure code simply because the environment changes.
 
 ---
+
+# Engineering Standards
+
+COB is intended to become an internal company standard, so the platform should establish sensible defaults.
+
+Consider how COB can enforce or encourage:
+
+- Consistent naming
+- Standard resource tagging
+- Encryption at rest
+- Secure S3 configuration
+- Least-privilege IAM
+- Appropriate network isolation
+- Secure security-group rules
+- Resource lifecycle management
+- Environment separation
+- Cost-conscious infrastructure
+
+These standards should be implemented through the platform wherever practical rather than relying entirely on individual developers to remember them.
+
+---
+
+# Expected Repository
+
+The exact structure is your decision, but the repository should clearly separate:
+
+```text
+Platform modules
+Environment configuration
+Documentation
+Examples / consumers
+```
+
+A new engineer joining the Platform Engineering team should be able to understand the repository without requiring a walkthrough from you.
+
+---
+
+# Platform Demonstration
+
+COB itself is the product you are building.
+
+Your demonstration should therefore show how an engineering team would consume it.
+
+Create at least one example consumer that uses COB to provision a realistic combination of AWS infrastructure.
+
+For example, an engineering team should be able to compose several COB capabilities rather than manually recreating the underlying AWS resources.
+
+The example consumer is intended to prove that your abstractions are genuinely reusable.
+
+---
