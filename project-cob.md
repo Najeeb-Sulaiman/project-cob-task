@@ -235,3 +235,67 @@ For example, an engineering team should be able to compose several COB capabilit
 The example consumer is intended to prove that your abstractions are genuinely reusable.
 
 ---
+
+# Documentation
+
+Your platform must include documentation for engineers who will consume it.
+
+Document:
+
+- What COB is
+- The problem it solves
+- Available capabilities
+- How modules are consumed
+- Required inputs
+- Outputs
+- Supported environments
+- Security considerations
+- Important assumptions
+- Known limitations
+
+Also document the major architectural decisions you made and the reasoning behind them.
+
+---
+
+# Architecture
+
+Provide an architecture diagram showing the major components of COB and the AWS infrastructure it provisions.
+
+The diagram should make the relationships between networking, IAM, compute, storage and managed services clear.
+
+Do not simply produce a diagram containing every AWS icon.
+
+The diagram should communicate the architecture to another engineer.
+
+---
+
+# Definition of Done
+
+COB is considered complete when:
+
+- The core platform capabilities can be provisioned through Terraform.
+- Modules are reusable across multiple projects and environments.
+- Modules provide meaningful abstractions rather than thin wrappers.
+- Infrastructure follows consistent security and configuration standards.
+- The platform can provision a realistic example environment.
+- The Terraform code is maintainable and clearly organised.
+- Engineers can understand how to consume the platform from the documentation.
+- Major architectural and security decisions can be explained and defended.
+
+---
+
+# Final Outcome
+
+At the end of this project, Beejan Technologies should have the foundation of an internal infrastructure platform that allows engineering teams to move from:
+
+> **"We need AWS infrastructure. Can Platform Engineering create it for us?"**
+
+to:
+
+> **"We can provision the infrastructure we need using the company's standard platform."**
+
+Your goal is not to provision as many AWS resources as possible.
+
+Your goal is to demonstrate that you can **design reusable infrastructure abstractions, encode engineering standards in Terraform, and build a platform that other engineers can confidently use.**
+
+The next project will treat COB as a real internal platform and use it to build a production-style data engineering solution.
