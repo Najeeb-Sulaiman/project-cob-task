@@ -25,3 +25,62 @@ Provision the infrastructure through COB's existing interfaces wherever possible
 Do not bypass COB and recreate its modules inside the consumer project simply to make the solution work.
 
 If COB lacks a capability you genuinely need, document the gap and decide whether it belongs in the platform or should remain specific to the consuming application.
+
+## Part B - Automate Terraform with CI/CD
+
+This is the core of the project.
+
+Currently, an engineer runs `terraform validate`, `terraform plan`, and `terraform apply` manually. Your job is to design and implement an automated workflow for infrastructure changes.
+
+### Stage 1: Continuous integration - validate changes
+
+Whenever a pull request changes Terraform code, the pipeline should automatically:
+
+* Check out the repository.
+* Initialise Terraform using the appropriate backend configuration.
+* Check Terraform formatting.
+* Run `terraform validate`.
+* Generate a Terraform plan.
+* Publish the plan in a way that reviewers can inspect it safely.
+
+The pipeline must fail when required checks fail. An Engineer should not be able to merge a change simply because the Terraform code looks correct.
+
+### Stage 2: Review and approval
+
+Infrastructure changes can create resources, destroy resources, expose services, or increase cloud costs.
+
+The CI/CD pipeline must therefore make the proposed changes visible before they are applied.
+
+Implement a review process that allows an authorised person to inspect the plan and approve the deployment where appropriate.
+
+**Important**: Do not automatically apply every plan generated for a pull request.
+
+### Stage 3: Continuous delivery — apply approved changes
+
+After a pull request is approved and merged into the designated deployment branch, the pipeline should execute the approved infrastructure change through terraform apply.
+
+The workflow should:
+
+* Apply only from the intended branch or deployment trigger.
+* Use the correct environment and Terraform state.
+* Prevent conflicting deployments against the same state.
+* Stop when validation, planning, approval, or other required checks fail.
+* Report whether the deployment succeeded or failed.
+
+### Stage 4: Demonstrate the complete workflow
+
+Demonstrate the pipeline using real changes to your data platform.
+
+At minimum, show these scenarios:
+
+#### Scenario A — Valid infrastructure change
+
+Add a resource or change a configuration. Open a pull request, inspect the checks and plan, merge the approved change, and demonstrate that the pipeline applies it.
+
+#### Scenario B — Invalid Terraform
+
+Introduce a deliberate configuration error in a separate branch. Show that the pipeline detects the problem and prevents the deployment.
+
+### Scenario C — Repeatability
+
+Run the workflow again when no infrastructure changes are required. Observe the resulting plan and demonstrate that your pipeline handles an unchanged environment sensibly.
