@@ -55,7 +55,7 @@ Implement a review process that allows an authorised person to inspect the plan 
 
 **Important**: Do not automatically apply every plan generated for a pull request.
 
-### Stage 3: Continuous delivery — apply approved changes
+### Stage 3: Continuous delivery - apply approved changes
 
 After a pull request is approved and merged into the designated deployment branch, the pipeline should execute the approved infrastructure change through terraform apply.
 
@@ -73,14 +73,34 @@ Demonstrate the pipeline using real changes to your data platform.
 
 At minimum, show these scenarios:
 
-#### Scenario A — Valid infrastructure change
+#### Scenario A - Valid infrastructure change
 
 Add a resource or change a configuration. Open a pull request, inspect the checks and plan, merge the approved change, and demonstrate that the pipeline applies it.
 
-#### Scenario B — Invalid Terraform
+#### Scenario B - Invalid Terraform
 
 Introduce a deliberate configuration error in a separate branch. Show that the pipeline detects the problem and prevents the deployment.
 
-### Scenario C — Repeatability
+### Scenario C - Repeatability
 
 Run the workflow again when no infrastructure changes are required. Observe the resulting plan and demonstrate that your pipeline handles an unchanged environment sensibly.
+
+## Part C - Apply production engineering practices
+
+Consider the controls and best practices that make infrastructure automation safe and maintainable. This is a production platform and it should be treated as such.
+
+## Deliverables
+
+### Submit the following:
+
+1. **Working data engineering solution:** A data platform with Infrastructure provisioned through COB
+
+2. **Automated Terraform pipeline:** Formatting, validation, planning, review, and controlled application of infrastructure changes.
+
+3. **Demonstration:** Evidence of successful deployment, a failed validation, a reviewed change, and an unchanged plan.
+
+4. **Architecture diagram:** Architectural daigram of your project implementation.
+
+5. **Documentation:** Explain how to use your CI/CD pipeline and other implementations.
+
+6. **Engineering decisions:** Document your engineering choices, trade-offs and lesson learned.
